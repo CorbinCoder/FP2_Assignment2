@@ -1,24 +1,19 @@
-package application;
+package fpoua.week8.assessment;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.scene.*;
-import javafx.scene.layout.VBox;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-//			FXMLLoader loader = FXMLLoader.load(getClass().getResource("Matchmaker.fxml"));
-			VBox root = (VBox) FXMLLoader.load(getClass().getResource("Matchmaker.fxml"));
-//			Controller controller = new Controller();
-//			loader.setController(controller);
-			Scene scene = new Scene(root,700,500);
+			BorderPane root = new BorderPane();
+			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-//			controller.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

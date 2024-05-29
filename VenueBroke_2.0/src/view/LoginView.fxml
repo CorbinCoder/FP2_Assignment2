@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="500.0" maxWidth="700.0" minHeight="150.0" minWidth="250.0" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <VBox fx:id="textArea" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="44.0" text="Log In" />
+            <TextField fx:id="usernameTextField" alignment="CENTER" maxHeight="25.0" maxWidth="250.0" minHeight="25.0" minWidth="100.0" prefHeight="25.0" prefWidth="100.0" promptText="Username" />
+            <TextField fx:id="passwordTextField" alignment="CENTER" maxHeight="25.0" maxWidth="250.0" minHeight="25.0" minWidth="100.0" prefHeight="25.0" prefWidth="200.0" promptText="Password" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="50.0" />
+         </padding>
+      </VBox>
+      <HBox fx:id="buttonArea" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUpButtonHandler" text="Sign Up" />
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonHandler" text="Submit" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

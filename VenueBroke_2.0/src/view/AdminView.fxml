@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+   <children>
+      <HBox prefHeight="500.0" prefWidth="700.0">
+         <children>
+            <TableView fx:id="userTable" minWidth="400.0">
+              <columns>
+                <TableColumn fx:id="userIDColumn" minWidth="-1.0" prefWidth="100.0" text="User ID" />
+                <TableColumn fx:id="fNameColumn" minWidth="-1.0" prefWidth="100.0" text="First Name" />
+                  <TableColumn fx:id="lNameColumn" minWidth="-1.0" prefWidth="100.0" text="Last Name" />
+                  <TableColumn fx:id="emailColumn" minWidth="-1.0" prefWidth="100.0" text="Email" />
+              </columns>
+            </TableView>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="First Name" />
+                  <TextField fx:id="fNameField" maxWidth="200.0" />
+                  <Label text="Last Name" />
+                  <TextField fx:id="lNameField" maxWidth="200.0" />
+                  <Label text="Email" />
+                  <TextField fx:id="emailField" maxWidth="200.0" />
+                  <Label text="Password" />
+                  <TextField fx:id="pWordField" maxWidth="200.0" />
+                  <ButtonBar>
+                    <buttons>
+                      <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonHandler" text="Submit" />
+                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonHandler" text="Exit" />
+                    </buttons>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="75.0" right="75.0" top="10.0" />
+                     </padding>
+                  </ButtonBar>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
