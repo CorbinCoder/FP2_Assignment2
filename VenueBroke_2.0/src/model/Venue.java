@@ -12,7 +12,7 @@ public class Venue extends Client {
 	// suitability types for differing events, venue category, and 
 	// hourly hire price.
 
-	private static int venueIDGenerator;
+	private static int venueIDGenerator = 0;
 	private SimpleIntegerProperty venueID;
 	private SimpleStringProperty venueClient;
 	private SimpleIntegerProperty capacity;
@@ -36,6 +36,20 @@ public class Venue extends Client {
 		this.hourlyPrice = new SimpleIntegerProperty(hourlyPrice);
 		this.compatibilityScore = new SimpleIntegerProperty(1);
 		
+	}
+	
+	public Venue(int venueID, String venueClient, int capacity, String[] suitableFor, 
+			String category, int hourlyPrice) {
+
+		this.venueID = new SimpleIntegerProperty(venueID);
+		this.venueClient = new SimpleStringProperty(venueClient);
+		this.capacity = new SimpleIntegerProperty(capacity);
+		this.suitableFor = new SimpleStringProperty[suitableFor.length];
+		this.suitableFor = convertSuitableFor(suitableFor);
+		this.category = new SimpleStringProperty(category);
+		this.hourlyPrice = new SimpleIntegerProperty(hourlyPrice);
+		this.compatibilityScore = new SimpleIntegerProperty(1);
+	
 	}
 	
 	private SimpleStringProperty[] convertSuitableFor(String[] suitableFor) {
@@ -95,6 +109,22 @@ public class Venue extends Client {
 		// Return string of suitability elements.
 		return suitableForString;
 		
+	}
+	
+	public boolean isBooked(Event event) {
+		
+		for (Order order : Model.getOrders()) {
+			
+			if (order.venueIDProperty().equals(this.venueIDProperty())) {
+				
+				if (order.getEvent().dateProperty().equals(event.dateProperty())) {
+					
+					return true;
+					
+				}	
+			}
+		}
+		return false;
 	}
 	
 	// Various get/set methods.

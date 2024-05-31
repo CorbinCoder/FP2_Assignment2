@@ -6,6 +6,7 @@ import model.Model;
 
 public class Main extends Application {
 	
+	@SuppressWarnings("unused")
 	private Model model;
 	public static final String mmLoaderPath = "/view/MainMenuView.fxml";
 	public static final String loginLoaderPath = "/view/LoginView.fxml";

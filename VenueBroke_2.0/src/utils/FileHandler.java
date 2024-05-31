@@ -138,12 +138,14 @@ public class FileHandler {
 					
 					// Initialize new event object using information extracted from 
 					// line and add it to the event list.
-					tempEvents.add(new Event(tempClient, tempTitle, tempArtist, 
-												date, time,	tempTarget, tempDuration, 
-												tempType, tempCategory));
+					Event tempEvent = new Event(tempClient, tempTitle, tempArtist, 
+							date, time,	tempTarget, tempDuration, 
+							tempType, tempCategory);
+					tempEvents.add(tempEvent);
 					
 					// Notify user of import progress then increment progress count.
-					System.out.print(count + "... ");
+					System.out.println(count + "... ");
+					System.out.println(tempEvent.toString());
 					count++;
 					
 					// Move to the next line of import file.
@@ -225,11 +227,12 @@ public class FileHandler {
 				
 				// Initialize new venue object using information extratced from 
 				// line and add it to the venue list.
-				tempVenues.add(new Venue(tempClient, tempCapacity, tempSuitable, 
-											tempCategory, tempPrice));
+				Venue tempVenue = new Venue(tempClient, tempCapacity, tempSuitable, tempCategory, tempPrice);
+				tempVenues.add(tempVenue);
 				
 				// Notify user of import progress then increment progress count.
-				System.out.print(count + "... ");
+				System.out.println(count + "... ");
+				System.out.println(tempVenue.toString());
 				count++;
 				
 				// Move to the next line of import file.

@@ -1,5 +1,8 @@
 package model;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import doa.DatabaseConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,21 +19,38 @@ public class Model {
 	private static User currUser;
 	
 	public Model() {
-		importFromCSV();
-		currUser = new User("john", "doe", "c.peever@live.com", "cPeever7*");
-		userList.add(currUser);
+		
+		eventList = FXCollections.observableArrayList();
+		venueList = FXCollections.observableArrayList();
+		orderList = FXCollections.observableArrayList();
+		userList = FXCollections.observableArrayList();
+			
+		Admin admin =  new Admin("john", "doe", "admin", "password");
+		System.out.println("Admin email: " + admin.emailProperty().get() 
+							+ "\nAdmin password: " + admin.passwordProperty().get());
+		userList.add(admin);
+		
 		dbConnector = new DatabaseConnector();
-		dbConnector.initializeDB();
-		dbConnector.addData(venueList, eventList, orderList, userList);
-		System.out.println(currUser.emailProperty().get() + " " + currUser.passwordProperty().get());
+		DatabaseConnector.initializeDB();
+		DatabaseConnector.addAllData(venueList, eventList, orderList, userList);
 	}
 	
 	public static void importFromCSV() {
 		
-		eventList = FXCollections.observableArrayList(FileHandler.importEventList());
-		venueList = FXCollections.observableArrayList(FileHandler.importVenueList());
-		orderList = FXCollections.observableArrayList();
-		userList = FXCollections.observableArrayList();
+		try {
+			
+			venueList = null;
+			eventList = null;
+			
+			venueList = FXCollections.observableArrayList(FileHandler.importVenueList());
+			eventList = FXCollections.observableArrayList(FileHandler.importEventList());
+			
+			DatabaseConnector.addDataToVenueTable(venueList);
+			DatabaseConnector.addDataToEventTable(eventList);
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 	public void load() {
@@ -41,20 +61,76 @@ public class Model {
 		
 	}
 	
-	public void login() {
+	public void login(String username, String password) {
 		
+		
+		
+	}
+	
+	public static StringBuilder getAvailableVenues (Event event) {
+		
+		StringBuilder queryBuilder = new StringBuilder();
+		
+		for (Order order : orderList) {
+			
+			if (order.getEvent().dateProperty().equals(event.dateProperty())) {
+				
+				queryBuilder.append(order.getVenue().venueIDProperty());
+				
+			}
+			
+			if (orderList.indexOf(order) < orderList.size()) {
+				
+				queryBuilder.append(",");
+				
+			} else {
+				continue;
+			}
+		}
+		
+		return queryBuilder;
 	}
 	
 	public static ObservableList<Event> getEvents() {
 		return eventList;
 	}
 	
+	public static void setEvents(ObservableList<Event> events) {
+		eventList = events;
+	}
+	
+	public static void clearEvents() {
+		eventList = null;
+		eventList = FXCollections.observableArrayList();
+	}
+	
 	public static ObservableList<Venue> getVenues() {
 		return venueList;
 	}
 	
+	public static void setVenues(ObservableList<Venue> venues) {
+		venueList = venues;
+	}
+	
+	public static void clearVenues() {
+		venueList = null;
+		venueList = FXCollections.observableArrayList();
+	}
+	
+	public static ObservableList<Order> getOrders() {
+		return orderList;
+	}
+	
+	public static void setOrders(ObservableList<Order> orders) {
+		orderList = orders;
+	}
+	
 	public static ObservableList<User> getUsers() {
 		return userList;
+	}
+	
+	public static void setUsers(ObservableList<User> users) {
+		userList = users;
 	}
 	
 	public static User getCurrUser() {

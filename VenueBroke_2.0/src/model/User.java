@@ -15,7 +15,7 @@ public class User {
 	private SimpleStringProperty lName;
 	private SimpleStringProperty email;
 	private SimpleStringProperty pWord;
-	private static int userIDGenerator;
+	private static int userIDGenerator = 0;
 	
 	public User (String fName, String lName, String email, String pWord) {
 		
@@ -26,6 +26,8 @@ public class User {
 			this.lName = new SimpleStringProperty(lName);
 			this.email = new SimpleStringProperty (email);
 			this.pWord = new SimpleStringProperty (pWord);
+			
+			System.out.println(userID.get()+fName+lName+email+pWord);
 			
 //		} else {
 //			
@@ -40,22 +42,15 @@ public class User {
 	
 	public static User getUserMatch(String email, String pWord) {
 		
-//		if (verifyEmail(email) && verifyPassword(pWord)) {
-//	
-			for (User user : Model.getUsers()) {
-				
-				if (user.emailProperty().get().equals(email)) {
-					if (user.passwordProperty().get().equals(pWord)) {
-						return user;
-					}
-				}
+		
+	for (User user : Model.getUsers()) {
+		
+		if (user.emailProperty().get().equals(email)) {
+			if (user.passwordProperty().get().equals(pWord)) {
+				return user;
 			}
-//		} else {
-//			Alert alert = new Alert(AlertType.INFORMATION);
-//			alert.setHeaderText("Error!");
-//			alert.setContentText("Password and/or email are invalid!");
-//			alert.showAndWait();
-//		}
+		}
+	}
 		return null;
 	}
 	

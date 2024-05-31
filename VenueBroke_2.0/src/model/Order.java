@@ -1,5 +1,6 @@
 package model;
 
+import doa.DatabaseConnector;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import utils.FileHandler;

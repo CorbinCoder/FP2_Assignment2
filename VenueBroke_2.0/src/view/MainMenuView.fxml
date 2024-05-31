@@ -19,37 +19,12 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="loadMenuItem" mnemonicParsing="false" text="Load" />
+            <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" text="Save" />
+            <MenuItem fx:id="importMenuItem" mnemonicParsing="false" onAction="#importHandler" text="Import" />
             <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#quitHandler" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" text="Admin View" />
           </items>
         </Menu>
       </menus>
@@ -66,13 +41,13 @@
             </TableView>
             <VBox layoutX="419.0" layoutY="1.0" prefHeight="200.0" prefWidth="195.0" spacing="5.0">
                <children>
-                  <Button fx:id="showEventsButton" mnemonicParsing="false" onAction="#showEventsButtonHandler" prefHeight="26.0" prefWidth="172.0" text="Show event details" />
-                  <CheckBox mnemonicParsing="false" text="Available" />
-                  <CheckBox mnemonicParsing="false" text="Sufficient Capacity" />
-                  <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="183.0" text="Event type" />
-                  <CheckBox mnemonicParsing="false" text="Venue Category" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="171.0" text="Filter Venues" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Auto Match" />
+                  <Button fx:id="showEventsButton" mnemonicParsing="false" onAction="#showEventsHandler" prefHeight="26.0" prefWidth="172.0" text="Show event details" />
+                  <CheckBox fx:id="availableCheckBox" mnemonicParsing="false" text="Available" />
+                  <CheckBox fx:id="capacityCheckBox" mnemonicParsing="false" text="Sufficient Capacity" />
+                  <CheckBox fx:id="typeCheckBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="183.0" text="Event type" />
+                  <CheckBox fx:id="categoryCheckBox" mnemonicParsing="false" text="Venue Category" />
+                  <Button fx:id="filterButton" mnemonicParsing="false" onAction="#filterHandler" prefHeight="26.0" prefWidth="171.0" text="Filter Venues" />
+                  <Button fx:id="automatchButton" mnemonicParsing="false" onAction="#automatchHandler" prefHeight="26.0" prefWidth="170.0" text="Auto Match" />
                </children>
                <padding>
                   <Insets top="3.0" />
@@ -101,11 +76,11 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TableView prefHeight="102.0" prefWidth="209.0">
+                  <TableView fx:id="bookingsTable" prefHeight="102.0" prefWidth="209.0">
                     <columns>
-                      <TableColumn prefWidth="53.0" text="Date" />
-                      <TableColumn prefWidth="56.0" text="Time" />
-                        <TableColumn prefWidth="116.0" text="Event No" />
+                      <TableColumn fx:id="dateColumn" prefWidth="53.0" text="Date" />
+                      <TableColumn fx:id="timeColumn" prefWidth="56.0" text="Time" />
+                        <TableColumn fx:id="eventIDColumn" prefWidth="116.0" text="Event No" />
                     </columns>
                   </TableView>
                </children>
